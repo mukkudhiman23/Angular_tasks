@@ -1,0 +1,180 @@
+<form class="form-group" [formGroup]="form">
+  <div class="container card mt-4">
+    <h3>Reactive Form Validation Demo</h3>
+    <div>
+      <label for="reg_no">Registration No:</label>
+      <input
+        type="number"
+        formControlName="reg_no"
+        class="form-control"
+        placeholder="enter registration number"
+      />
+      <span
+        *ngIf="form.controls.reg_no.invalid && form.controls.reg_no.touched"
+        class="alert alert-danger"
+      >
+        <span *ngIf="form.controls.reg_no.errors.required"
+          >Registration Number is required
+        </span>
+      </span>
+    </div>
+
+    <div>
+      <label for="name ">Full Name:</label>
+      <input
+        type="text"
+        formControlName="name"
+        class="form-control"
+        placeholder="enter username name "
+      />
+      <span
+        *ngIf="form.controls.name.invalid && form.controls.name.touched"
+        class="alert alert-danger"
+      >
+        <span *ngIf="form.controls.name.errors.required"
+          >Name is required
+        </span>
+        <span *ngIf="form.controls.name.errors.cannotContainSpace"
+          >Name can not contain space
+        </span>
+        <span
+          *ngIf="
+            form.controls.name.errors.minimumLength && form.controls.name.dirty
+          "
+          >Name should be greater than 3 character
+        </span>
+      </span>
+    </div>
+    <div>
+      <label for="email">Email:</label>
+      <input
+        type="text"
+        formControlName="email"
+        class="form-control"
+        placeholder="enter email address"
+      />
+      <span
+        *ngIf="form.controls.email.invalid && form.controls.email.touched"
+        class="alert alert-danger"
+      >
+        <span *ngIf="form.controls.email.errors.required"
+          >Email is required
+        </span>
+
+        <span
+          *ngIf="
+            form.controls.email.errors.checkPattern && form.controls.email.dirty
+          "
+          >Enter valid email pattern
+        </span>
+      </span>
+    </div>
+    <div class="mt-2">
+      <label for="bday">Birthdate:</label>
+
+      <input
+        type="date"
+        formControlName="bday"
+        class="form-control"
+        placeholder="enter birth date"
+      />
+      <span
+        *ngIf="form.controls.bday.invalid && form.controls.bday.touched"
+        class="alert alert-danger"
+      >
+        <span *ngIf="form.controls.bday.errors.required"
+          >BirthDate is required
+        </span>
+
+        <span
+          *ngIf="
+            form.controls.bday.errors.checkBdayDate && form.controls.bday.dirty
+          "
+          >Enter valid BirthDate
+        </span>
+      </span>
+    </div>
+
+    <div class="mt-2">
+      <p>Gender:</p>
+      <label>
+        <input type="radio" formControlName="gender" value="male" />
+        Male
+      </label>
+      <label>
+        <input type="radio" formControlName="gender" value="female" />
+        Female
+      </label>
+      <span
+        *ngIf="form.controls.gender.invalid && form.controls.gender.touched"
+        class="alert alert-danger"
+      >
+        <span *ngIf="form.controls.gender.errors.required">Choose gender </span>
+      </span>
+    </div>
+    <div class="mt-2">
+      <label for="hobbies">Hobbies:</label>
+      <select class="form-control" formControlName="hobbies">
+        <option disabled>Select any one</option>
+        <option>Dancing</option>
+        <option>Singing</option>
+        <option>Cooking</option>
+      </select>
+      <span
+        *ngIf="form.controls.hobbies.invalid && form.controls.hobbies.touched"
+        class="alert alert-danger"
+      >
+        <span *ngIf="form.controls.hobbies.errors.required"
+          >Choose any hobby
+        </span>
+      </span>
+    </div>
+
+    <div class="mt-2">
+      <label for="password">Password:</label>
+
+      <input
+        type="password"
+        formControlName="password"
+        class="form-control"
+        placeholder="enter password"
+      />
+
+      <span
+        *ngIf="form.controls.password.invalid && form.controls.password.touched"
+        class="alert alert-danger"
+      >
+        <span *ngIf="form.controls.password.errors.required"
+          >Password is required
+        </span>
+
+        <span
+          *ngIf="
+            form.controls.password.errors.checkPassword &&
+            form.controls.password.dirty
+          "
+          >Enter Strong password pattern
+        </span>
+      </span>
+    </div>
+    <div class="mt-2">
+      <input formControlName="accept" type="checkbox" id="accept" />
+      <label>Accept Tearm & Conditions</label><br />
+      <span
+        *ngIf="form.controls.accept.invalid && form.controls.accept.touched"
+        class="alert alert-danger"
+      >
+        <span *ngIf="form.controls.accept.errors.required"
+          >Accept term & policies
+        </span>
+      </span>
+    </div>
+    <input
+      type="submit"
+      value="submit"
+      class="btn btn-primary"
+      id="submit"
+      (click)="onSubmit()"
+    />
+  </div>
+</form>
